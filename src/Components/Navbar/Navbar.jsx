@@ -1,9 +1,14 @@
 import React from 'react';
+import Headline from './Headline';
+import RunningLine from './RunningLine';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     return (
         <div>
-            <h1 className='font-bold un'>this is from Navbar</h1>
+            <Headline></Headline>
+            <RunningLine></RunningLine>
+            <NavLink></NavLink>
         </div>
     );
 };
