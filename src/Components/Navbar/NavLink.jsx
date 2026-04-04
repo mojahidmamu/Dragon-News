@@ -60,7 +60,7 @@ const NavLink = () => {
           className="hover:text-purple-400 transition-colors duration-200"
         >
         <a className="btn">Login</a>
-        </Link>
+      </Link>
    
   </div>
 </div>
