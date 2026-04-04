@@ -80,7 +80,7 @@
                     : 'bg-amber-500 hover:bg-amber-600 text-gray-900 shadow-lg shadow-amber-500/30'
                 }`}
                 >
-                {isLoggedIn ? '🔓 Logout' : '🔒 Login'}
+                {isLoggedIn ? ' Logout' : ' Login'}
                 </button>
             </div>
             </div>

@@ -1,32 +1,37 @@
 // components/NavLink.jsx
 import React from 'react';
+import UserLogo from "../../assets/image/user.png";
 
 const NavLink = () => {
-    const handleNavClick = (e, pageName) => {
-        e.preventDefault();
-        console.log(`Navigating to: ${pageName}`);
-        alert(`Navigating to ${pageName} page...`);
-    };
 
     return (
-        <nav className="bg-black/30 border-t border-gray-700">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <ul className="flex justify-center space-x-8 md:space-x-12 py-3">
-                    {['Home', 'About', 'Career'].map((item) => (
-                        <li key={item}>
-                            <a
-                                href={`/${item.toLowerCase()}`}
-                                onClick={(e) => handleNavClick(e, item)}
-                                className="relative text-gray-300 hover:text-amber-400 font-medium tracking-wide transition-colors duration-300 group"
-                            >
-                                {item}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </nav>
+        <div className="navbar bg-base-100 shadow-sm">
+  <div className="navbar-start">
+    <div className="dropdown">
+      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+      </div>
+      <ul
+        tabIndex="-1"
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Career</a></li>
+      </ul>
+    </div>
+  </div>
+  <div className="navbar-center hidden lg:flex">
+    <ul className="menu menu-horizontal px-1">
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Career</a></li>
+    </ul>
+  </div>
+  <div className="navbar-end gap-4">
+    <img className='' src={UserLogo} alt="User" />
+    <a className="btn">Login</a>
+  </div>
+</div>
     );
 };
 
