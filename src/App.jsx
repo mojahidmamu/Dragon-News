@@ -1,11 +1,16 @@
 
+import { Outlet } from 'react-router'
 import './App.css'
+import Navbar from './Components/Navbar/Navbar'
+import Footer from './Components/Footer/Footer'
 
 function App() { 
 
   return (
     <>
-      <h1 className='font-bold underline'>Dragon News</h1>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
+      <Footer></Footer>
     </>
   )
 }

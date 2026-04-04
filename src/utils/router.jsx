@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
-import Home from "../Components/Home/Home";
-import MainLayout from "../Components/MainLayout/MainLayout";
+import Home from "../Components/Home/Home"; 
+import App from "../App";
 
 const router = createBrowserRouter([
     {
         path: "/",  
-        element: <MainLayout></MainLayout> ,
+        element: <App></App> ,
         children: [
             {
                 path: "/",
