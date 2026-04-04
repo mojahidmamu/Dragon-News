@@ -55,7 +55,13 @@ const NavLink = () => {
   </div>
   <div className="navbar-end gap-4">
     <img className='' src={UserLogo} alt="User" />
-    <a className="btn">Login</a>
+    <Link
+          to="/login"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+        <a className="btn">Login</a>
+        </Link>
+   
   </div>
 </div>
     );
