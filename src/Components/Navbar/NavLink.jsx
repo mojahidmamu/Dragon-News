@@ -1,8 +1,38 @@
 // components/NavLink.jsx
 import React from 'react';
 import UserLogo from "../../assets/image/user.png";
+import { Link } from 'react-router';
 
 const NavLink = () => {
+
+   const NavOptions = (
+    <>
+      <li>
+        <Link
+          to="/"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/about"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/career"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+          Career
+        </Link>
+      </li>
+    </>
+  );
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -14,17 +44,13 @@ const NavLink = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Career</a></li>
+        {NavOptions}
       </ul>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Career</a></li>
+        {NavOptions}
     </ul>
   </div>
   <div className="navbar-end gap-4">
