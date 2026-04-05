@@ -1,126 +1,123 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useLocation, useNavigate } from 'react-router';  
+import { Link, useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
-// import { signInWithPopup} from "firebase/auth"; 
 
-    const Login = () => {
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [error, setError] = useState('');
-        const [loading, setLoading] = useState(false);
-        const navigate = useNavigate();
-        const location = useLocation();
-        const { login } = useAuth();
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-        const from = location.state?.from?.pathname || '/';
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            
-            // if (password !== confirmPassword) {
-            // return setError('Passwords do not match');
-            // }
+  const from = location.state?.from?.pathname || '/';
 
-            try {
-            setError('');
-            setLoading(true);
-            await login(email, password, name);
-            navigate(from, {replace: true});  
-            } catch (error) {
-                setError("Email or Password wrong", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // // GitHub Login
-    // const handleGithubSignIn = () => {
-    //     signInWithPopup(auth, githubProvider)
-    //     .then((result) => {
-    //         console.log("GitHub User:", result.user);
-    //         alert(
-    //         `✅ Welcome ${result.user.name} ! You have successfully logged in with GitHub.`,
-    //         );
-    //     })
-    //     .catch((error) => {
-    //         console.error("GitHub SignIn Error:", error);
-    //         alert(error.message);
-    //     });
-    // };
+    try {
+      setError('');
+      setLoading(true);
+      await login(email, password);
+      navigate(from, { replace: true });
+    } catch (error) {
+      setError('❌ Email or Password is incorrect', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // // Google Login
-    // const handleGoogleSignIn = () => {
-    //     signInWithPopup(auth, googleProvider)
-    //     .then((result) => {
-    //         console.log("Google User:", result.user);
-    //         alert(
-    //         `✅ Welcome ${result.user.displayName}. You have successfully logged in Google!`,
-    //         );
-    //     })
-    //     .catch((error) => {
-    //         console.error("Google SignIn Error:", error.message);
-    //     });
-    // };
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black px-4">
 
+      <div className="w-full max-w-md bg-gray-800 p-8 rounded-2xl shadow-2xl">
 
+        {/* Title */}
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          🔐 Login to your account
+        </h2>
 
-        return (
-        <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            {error && (
-            <div className="bg-red-600 text-white p-3 rounded mb-4">
-                {error}
-            </div>
-            )}
-            </div>  
+        {/* Error */}
+        {error && (
+          <div className="bg-red-500 text-white p-3 rounded mb-4 text-center">
+            {error}
+          </div>
+        )}
 
-             {/*  */}
-            <form action="" onSubmit={handleSubmit} className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    {/* Email */}
-                    <div className="mb-4">
-                        <label className="block text-gray-300 mb-2">Email</label>
-                        <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-amber-500 focus:outline-none"
-                        required
-                        />
-                    </div>
-                    {/* Password */}
-                    <div className="mb-4">
-                        <label className="block text-gray-300 mb-2">Password</label>
-                        <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-amber-500 focus:outline-none"
-                        required
-                        />
-                    </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit}>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold py-2 rounded-lg transition duration-300"
-                    >
-                        {loading ? 'Loading...' : 'Login'}
-                    </button>
-            </form>
-            {/*  */}
-                <p className="text-gray-400 text-center mt-4">
-                    No Account ? {' '}
-                    <Link to="/register" className="text-amber-500 hover:underline">
-                        Register
-                    </Link>
-                </p>
+          {/* Email */}
+          <div className="mb-4">
+            <label className="text-gray-300 block mb-2">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div className="mb-4">
+            <label className="text-gray-300 block mb-2">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Forgot password */}
+          <div className="text-right mb-4">
+            <a href="#" className="text-sm text-amber-400 hover:underline">
+              Forgot password?
+            </a>
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold py-2 rounded-lg transition duration-300"
+          >
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+
+        {/* Divider */}
+        <div className="divider text-gray-400 my-6">OR</div>
+
+        {/* Social Login */}
+        <div className="flex gap-4">
+          <button className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
+            <FcGoogle size={20} /> Google
+          </button>
+
+          <button className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
+            <FaGithub size={20} /> GitHub
+          </button>
         </div>
-    </div>
-        );
-    };
 
-    export default Login;
+        {/* Register */}
+        <p className="text-gray-400 text-center mt-6">
+          Don’t have an account?{' '}
+          <Link to="/register" className="text-amber-400 hover:underline">
+            Register
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
