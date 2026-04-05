@@ -1,9 +1,22 @@
 // components/NavLink.jsx
 // import React, { useState } from 'react';
 import UserLogo from "../../assets/image/user.png";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useAuth } from "../contexts/AuthContext";
 
 const NavLink = () => {
+
+  const {user, logout} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error('লগআউট করতে সমস্যা হয়েছে:', error);
+    }
+  };
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -61,22 +74,42 @@ const NavLink = () => {
         {NavOptions}
     </ul>
   </div>
-  <div className="navbar-end gap-4">
-    <img className='' src={UserLogo} alt="User" />
+
+    <div className="navbar-end gap-4">
+      {user ? (
+        <>  
+          <div>
+            <img 
+              src={user.photoURL || 'https://via.placeholder.com/40'}
+              alt={user.displayName || 'User'}
+              className="w-10 h-10 rounded-full object-cover border-2 border-amber-500"
+            />
+          </div>
+          <div className="hidden md:block">
+              <p className="text-white font-semibold">{user.displayName || 'User'}</p>
+              <p className="text-gray-400 text-xs">{user.email}</p>
+          </div>
+          <button onClick={handleLogout}  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition duration-300">
+            Logout
+          </button>
+        </>
+      ): (
+          <Link to="/login">
+                    <button
+                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+                          'bg-amber-500 hover:bg-amber-600 text-gray-900 shadow-lg shadow-amber-500/30'
+                    }`}
+                    >
+                    Login
+                    </button>
+            </Link> 
+      )}
+      {/* <img className='' src={UserLogo} alt="User" />
+      
+                 */}
+          
     
-                <Link to="/login">
-                
-                  <button
-                  className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                        'bg-amber-500 hover:bg-amber-600 text-gray-900 shadow-lg shadow-amber-500/30'
-                  }`}
-                  >
-                  Login
-                  </button>
-                </Link>
-        
-   
-  </div>
+    </div>
 </div>
     );
 };
