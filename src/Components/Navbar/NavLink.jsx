@@ -1,17 +1,17 @@
 // components/NavLink.jsx
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import UserLogo from "../../assets/image/user.png";
 import { Link } from 'react-router';
 
 const NavLink = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLoginClick = (e) => { 
-    e.preventDefault();
-    setIsLoggedIn(!isLoggedIn);
-    console.log('Login clicked - Current state:', !isLoggedIn);
-  }
+  // const handleLoginClick = (e) => { 
+  //   e.preventDefault();
+  //   setIsLoggedIn(!isLoggedIn);
+  //   console.log('Login clicked - Current state:', !isLoggedIn);
+  // }
 
    const NavOptions = (
     <>
@@ -64,16 +64,16 @@ const NavLink = () => {
   <div className="navbar-end gap-4">
     <img className='' src={UserLogo} alt="User" />
     
-                <button
-                onClick={handleLoginClick}
-                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                    isLoggedIn
-                    ? 'bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-500/30'
-                    : 'bg-amber-500 hover:bg-amber-600 text-gray-900 shadow-lg shadow-amber-500/30'
-                }`}
-                >
-                {isLoggedIn ? ' Logout' : ' Login'}
-                </button>
+                <Link to="/login">
+                
+                  <button
+                  className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+                        'bg-amber-500 hover:bg-amber-600 text-gray-900 shadow-lg shadow-amber-500/30'
+                  }`}
+                  >
+                  Login
+                  </button>
+                </Link>
         
    
   </div>
