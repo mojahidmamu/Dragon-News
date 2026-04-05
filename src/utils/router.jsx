@@ -5,6 +5,7 @@ import About from "../Components/About/About";
 import Career from "../Components/Career/Career";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
+import NewsDetials from "../Components/NewsDetials/NewsDetials";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/career",
                 element: <Career></Career>, 
+            },
+            {
+                path: "/news/:id",
+                element: <NewsDetials></NewsDetials> ,
             },
             {
                 path: "/login",

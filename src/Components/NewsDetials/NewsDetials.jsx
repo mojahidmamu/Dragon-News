@@ -155,16 +155,36 @@ const NewsDetials = () => {
           {/* Share Buttons */}
           <div className="mt-8 pt-6 border-t border-gray-800">
             <h3 className="text-lg font-semibold mb-3">Share this article:</h3>
-            <div className="flex gap-3">
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+           <div className="flex gap-3">
+                {/* GitHub */}
+                <a
+                href="https://github.com/mojahidmamu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800 hover:bg-gray-900 px-4 py-2 rounded-lg transition-colors"
+                >
+                GitHub
+                </a>
+
+                {/* Facebook */}
+                <a
+                href="https://www.facebook.com/abdullah.all.mojahid.2024"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors"
+                >
                 Facebook
-              </button>
-              <button className="bg-sky-500 hover:bg-sky-600 px-4 py-2 rounded-lg transition-colors">
-                Twitter
-              </button>
-              <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
-                WhatsApp
-              </button>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                href="https://www.linkedin.com/in/abdullah-all-mojahid-a8a57b329/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg transition-colors"
+                >
+                LinkedIn
+                </a>
             </div>
           </div>
         </article>
