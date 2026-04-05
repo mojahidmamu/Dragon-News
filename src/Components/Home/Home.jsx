@@ -25,12 +25,47 @@ const Home = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    const fetchNewsByCategory = async () => {
+      if (!selectedCategory) return;
+      
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `https://openapi.programming-hero.com/api/news/category/${selectedCategory}`
+        );
+        const data = await response.json();
+        if (data.status) {
+          setNews(data.data);
+        } else {
+          setNews([]);
+        }
+      } catch (error) {
+        console.error('Error fetching news:', error);
+        setNews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNewsByCategory();
+  }, [selectedCategory]);
+
     
     return (
          <main className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row gap-8">
-                <CategorySection></CategorySection>
-                <NewsSection></NewsSection>
+
+                <CategorySection 
+                categories={categories}
+                selectedCategory={selectedCategory} 
+                onSelectCategory={setSelectedCategory}
+                ></CategorySection>
+
+                <NewsSection
+                news={news}
+                loading={loading}
+                ></NewsSection>
             </div>
          </main>
     );
