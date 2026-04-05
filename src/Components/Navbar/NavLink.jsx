@@ -68,11 +68,15 @@ const NavLink = () => {
         {NavOptions}
       </ul>
     </div>
-    <div className="hidden md:block">
-              <p className="text-white font-semibold">{user.displayName || 'User'}</p>
-              <p className="text-gray-400 text-xs">{user.email}</p>
-    </div>
+    {user && (
+        <div className="hidden md:block font-semibold text-xl">
+           {user?.displayName || 'User'}
+            {/* <p className="text-white font-semibold">{user.displayName || 'User'}</p>
+            <p className="text-gray-400 text-xs">{user.email}</p> */}
+        </div>
+    )}
   </div>
+
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
         {NavOptions}
