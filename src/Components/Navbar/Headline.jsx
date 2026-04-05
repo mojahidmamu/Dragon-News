@@ -2,7 +2,7 @@
     import React, { useState, useEffect } from 'react';
 
     const Headline = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentDateTime, setCurrentDateTime] = useState({
         day: '',
         date: '',
@@ -38,11 +38,11 @@
         return () => clearInterval(interval);
     }, []);
 
-    const handleLoginClick = (e) => {
-        e.preventDefault();
-        setIsLoggedIn(!isLoggedIn);
-        console.log('Login clicked - Current state:', !isLoggedIn);
-    };
+    // const handleLoginClick = (e) => {
+    //     e.preventDefault();
+    //     setIsLoggedIn(!isLoggedIn);
+    //     console.log('Login clicked - Current state:', !isLoggedIn);
+    // };
     
 
     return (
@@ -55,23 +55,23 @@
             {/* Left side - empty for balance */}
             <div className="flex-1 hidden md:block"></div>
 
-            {/* Center - Logo and Tagline */}
-            <div className="flex-2 text-center">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight">
-                <span className="bg-gradient-to-r from-white to-amber-300 bg-clip-text text-transparent">
-                    The Dragon
-                </span>
-                <span className="text-amber-500 ml-2">News</span>
-                </h1>
-                <p className="text-amber-400 text-xs md:text-sm italic mt-2 tracking-wide">
-                Journalism Without Fear or Favour
-                </p>
-            </div>
+           {/* Center - Logo and Tagline */}
+<div className="text-center mr-84">
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight">
+        <span className="bg-gradient-to-r from-white to-amber-300 bg-clip-text text-transparent">
+            The Dragon
+        </span>
+        <span className="text-amber-500 ml-2">News</span>
+    </h1>
+    <p className="text-amber-400 text-xs md:text-sm italic mt-2 tracking-wide">
+        Journalism Without Fear or Favour
+    </p>
+</div>
 
             
 
             {/* Right side - Login Button */}
-            <div className="flex-1 flex justify-end">
+            {/* <div className="flex-1 flex justify-end">
                 <button
                 onClick={handleLoginClick}
                 className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
@@ -82,7 +82,7 @@
                 >
                 {isLoggedIn ? ' Logout' : ' Login'}
                 </button>
-            </div>
+            </div> */}
             </div>
 
             {/* Top Bar with Date and Time */}
