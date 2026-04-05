@@ -1,6 +1,7 @@
     import React, { useState } from 'react';
     import { useAuth } from '../contexts/AuthContext';
     import { useNavigate, Link } from 'react-router';
+    import { toast } from 'react-toastify';
 
     const Register = () => {
     const [name, setName] = useState('');
@@ -16,19 +17,40 @@
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-        return setError('❌ Passwords do not match');
+        // ❗ Name check
+        if (!name.trim()) {
+            return toast.error("Name is required");
         }
 
+        // ❗ Email check
+        if (!email.includes("@")) {
+            return toast.error("Invalid email");
+        }
+
+        // ❗ Password length
+        if (password.length < 6) {
+            return toast.error("Password must be at least 6 characters");
+        }
+
+        // ❗ Password match
+        if (password !== confirmPassword) {
+            return toast.error("Passwords do not match");
+        }
+
+        // if (password !== confirmPassword) {
+        // return setError('❌ Passwords do not match');
+        // }
+
         try {
-        setError('');
-        setLoading(true);
-        await register(email, password, name);
-        navigate('/login');
+            setError('');
+            setLoading(true);
+            await register(email, password, name);
+            toast.success("✅ Account created successfully!");
+            navigate('/login');
         } catch (err) {
-        setError(err.message);
+            toast.error(err.message);
         } finally {
-        setLoading(false);
+            setLoading(false); 
         }
     };
 
