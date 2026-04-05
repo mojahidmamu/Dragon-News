@@ -17,30 +17,54 @@
 
     const from = location.state?.from?.pathname || '/';
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-        if (!email || !password) {
-            return toast.error("Please fill all fields");
-        }
+    //     try {
+    //     setError('');
+    //     setLoading(true);
+    //     await login(email, password);
+    //     navigate(from, { replace: true });
+    //     } catch (error) {
+    //     setError('❌ Email or Password is incorrect', error);
+    //     } finally {
+    //     setLoading(false);
+    //     }
+    // };
 
-        if (!email.includes("@")) {
-            return toast.error("Invalid email");
-        }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  // 🔴 Empty field check
+  if (!email || !password) {
+    return toast.error("❌ Please fill all fields");
+  }
 
-        try {
-            setError('');
-            setLoading(true);
-            await login(email, password);
-            toast.success("✅ Login successful!");
-            navigate(from, { replace: true });
-        } catch (err) {
-            toast.error("Email or Password is incorrect", err);
-        } finally {
-            setLoading(false);
-        }
-    };
+  // 🔴 Email validation (basic)
+  if (!email.includes("@")) {
+    return toast.error("❌ Invalid email address");
+  }
+
+  try {
+    setLoading(true);
+
+    // ✅ Firebase login
+    await login(email, password);
+
+    // ✅ Success toast
+    toast.success("🎉 Login successful!");
+
+    // 👉 Redirect to previous page or home
+    navigate(from, { replace: true });
+
+  } catch (error) {
+    // 🔴 Login failed
+    toast.error("❌ Email or Password is incorrect");
+
+  } finally {
+    setLoading(false);
+  }
+};
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black px-4">
