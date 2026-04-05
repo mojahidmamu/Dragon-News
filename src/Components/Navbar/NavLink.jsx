@@ -68,6 +68,10 @@ const NavLink = () => {
         {NavOptions}
       </ul>
     </div>
+    <div className="hidden md:block">
+              <p className="text-white font-semibold">{user.displayName || 'User'}</p>
+              <p className="text-gray-400 text-xs">{user.email}</p>
+    </div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -85,10 +89,10 @@ const NavLink = () => {
               className="w-10 h-10 rounded-full object-cover border-2 border-amber-500"
             />
           </div>
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
               <p className="text-white font-semibold">{user.displayName || 'User'}</p>
               <p className="text-gray-400 text-xs">{user.email}</p>
-          </div>
+          </div> */}
           <button onClick={handleLogout}  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition duration-300">
             Logout
           </button>

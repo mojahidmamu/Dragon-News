@@ -4,6 +4,8 @@
     import { Link, useLocation, useNavigate } from 'react-router';
     import { useAuth } from '../contexts/AuthContext';
     import { toast } from 'react-toastify';
+    import { auth, githubProvider, googleProvider } from '../Firebase/firebase.config';
+    import { signInWithPopup } from 'firebase/auth';
 
     const Login = () => {
     const [email, setEmail] = useState('');
@@ -17,20 +19,34 @@
 
     const from = location.state?.from?.pathname || '/';
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    // Google Login
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log("Google User:", result.user);
+        alert(
+          `✅ Welcome ${result.user.displayName}. You have successfully logged in Google!`,
+        );
+      })
+      .catch((error) => {
+        console.error("Google SignIn Error:", error.message);
+      });
+  };
 
-    //     try {
-    //     setError('');
-    //     setLoading(true);
-    //     await login(email, password);
-    //     navigate(from, { replace: true });
-    //     } catch (error) {
-    //     setError('❌ Email or Password is incorrect', error);
-    //     } finally {
-    //     setLoading(false);
-    //     }
-    // };
+   // GitHub Login
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        console.log("GitHub User:", result.user);
+        alert(
+          `✅ Welcome ${result.user.name} ! You have successfully logged in with GitHub.`,
+        );
+      })
+      .catch((error) => {
+        console.error("GitHub SignIn Error:", error);
+        alert(error.message);
+      });
+  };
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -134,12 +150,13 @@ const handleSubmit = async (e) => {
 
             {/* Social Login */}
             <div className="flex gap-4">
-            <button className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
+            <button onClick={handleGoogleSignIn} className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
                 <FcGoogle size={20} /> Google
             </button>
 
-            <button className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
+            <button onClick={handleGithubSignIn} className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition">
                 <FaGithub size={20} /> GitHub
+                {/* 84c932b821db83ebfe10c451ba663e6eb6e000f0 */}
             </button>
             </div>
 
