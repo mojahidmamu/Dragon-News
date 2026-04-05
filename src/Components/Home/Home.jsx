@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CategorySection from '../CategorySection/CategorySection';
 import NewsSection from '../NewsSection/NewsSection';
-import { data } from 'react-router';
+ 
 
 const Home = () => {
     const [categories, setCategories] =  useState([]);
